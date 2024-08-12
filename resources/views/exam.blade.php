@@ -142,7 +142,7 @@
                                     @endif
                                     @endif
                                     class="answer-user" type="radio" que-id="{{$item->id}}"
-                                    number-chose="{{$item->chose1}}" name="{{ $key+1 }}"/>
+                                    number-chose="1" name="{{ $key+1 }}"/>
                                 {{$item->chose1}}
                             </label>
                             <label>
@@ -153,7 +153,7 @@
                                     @endif
                                     @endif
                                     class="answer-user" type="radio" que-id="{{$item->id}}"
-                                    number-chose="{{$item->chose2}}" name="{{ $key+1 }}"/>
+                                    number-chose="2" name="{{ $key+1 }}"/>
                                 {{$item->chose2}}
                             </label>
                             <label>
@@ -164,7 +164,7 @@
                                     @endif
                                     @endif
                                     class="answer-user" type="radio" que-id="{{$item->id}}"
-                                    number-chose="{{$item->chose3}}" name="{{ $key+1 }}"/>
+                                    number-chose="3" name="{{ $key+1 }}"/>
                                 {{$item->chose3}}
                             </label>
                             <label>
@@ -175,7 +175,7 @@
                                     @endif
                                     @endif
                                     class="answer-user" type="radio" que-id="{{$item->id}}"
-                                    number-chose="{{$item->chose4}}" name="{{ $key+1 }}"/>
+                                    number-chose="4" name="{{ $key+1 }}"/>
                                 {{$item->chose4}}
                             </label>
                         </div>
