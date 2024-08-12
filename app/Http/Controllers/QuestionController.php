@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\QuestionsImport;
 use App\Models\question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Maatwebsite\Excel\Facades\Excel;
 class QuestionController extends Controller
 {
     public function create_que(Request $request, $id)
@@ -102,5 +103,27 @@ class QuestionController extends Controller
 
         // پیام موفقیت
         return redirect()->route('que_list',['id'=>$question->exame_id]);
+    }
+    public function importExel(Request $request)
+    {
+        $request->validate([
+            'exame_id' => 'required|integer',
+            'file' => 'required|mimes:xlsx,xls,csv',
+        ]);
+
+        $file = $request->file('file');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $path = $file->storeAs('exel', $filename, 'public');
+
+        $fullPath = Storage::disk('public')->path($path);
+
+        if (Storage::disk('public')->exists($path)) {
+            Excel::import(new QuestionsImport($request->exame_id), $fullPath);
+            return back()->with('success', 'سوالات با موفقیت وارد شدند.');
+        } else {
+            return back()->with('error', 'خطا در ذخیره‌سازی فایل. لطفاً مجدداً تلاش کنید.');
+        }
+
+
     }
 }

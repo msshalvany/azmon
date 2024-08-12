@@ -24,6 +24,8 @@ return new class extends Migration
             $table->text('chose3')->nullable();
             $table->text('chose4')->nullable();
             $table->text('answer')->nullable();
+            $table->string('level')->nullable();
+            $table->string('fasl')->nullable();
             $table->timestamps();
         });
     }

@@ -72,4 +72,5 @@ Route::middleware(\App\Http\Middleware\User::class)->prefix('/user')->group(func
     Route::get('/que_edit_v/{id}', [\App\Http\Controllers\QuestionController::class, 'que_edit_v'])->name('que_edit_v');
     Route::delete('/del_que/{id}', [\App\Http\Controllers\QuestionController::class, 'del_que'])->name('del_que');
     Route::post('/edit_que/{id}', [\App\Http\Controllers\QuestionController::class, 'edit_que'])->name('edit_que');
+    Route::post('/importExel', [\App\Http\Controllers\QuestionController::class, 'importExel'])->name('importExel');
 });

@@ -18,6 +18,8 @@ class question extends Model
         'chose2',
         'chose3',
         'chose4',
-        'answer'
+        'answer',
+        'fasl',
+        'level'
     ];
 }

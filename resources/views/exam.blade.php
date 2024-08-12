@@ -124,7 +124,7 @@
                 @if($item->type=='test')
                     <div class="question @if(property_exists($item,'std_answer')) bg-secondary-subtle  @endif p-2"  >
                         <p class="question-text">سوال {{ $key+1 }}:</p>
-                        <p>{{$item->text}}</p>
+                        <p>{{$item->text}}  (<b>{{$item->fasl}}</b>) <b style="color: red">{{$item->level}}</b></p>
                         @if($item->image!=null)
                             <button
                                 class="show-image-btn btn btn-primary show-button mb-3"
