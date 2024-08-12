@@ -1,6 +1,6 @@
 @extends('layout.layout')
 @section('title')
-
+    آزمون {{$exam->title}}
 @endsection
 @section('css')
     <style>
