@@ -20,9 +20,108 @@
             background-color: #dde0e3;
             cursor: pointer;
         }
+        .question-container {
+            direction: rtl;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .question-text {
+            font-weight: bold;
+        }
+
+        .answer-options label {
+            display: block;
+        }
+
+        .answer-options input {
+            margin-left: 10px;
+        }
+
+        .answer-explanation {
+            margin-top: 10px;
+        }
+
+        .image-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            visibility: hidden;
+        }
+
+        .image-container.active {
+            visibility: visible;
+        }
+
+        .image-container img {
+            max-width: 80%;
+            max-height: 80%;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .image-viewer {
+            width: 100%;
+            height: 100vh;
+            display: none;
+            position: fixed;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 5;
+        }
+
+        .image-viewer img {
+            width: 90%;
+        }
+
+        .close-button {
+            width: 50px;
+            height: 50px;
+            line-height: 54px;
+            color: white;
+            background: red;
+        }
     </style>
 @endsection
 @section('content')
+    <div class="image-viewer">
+        <button class="close-button rounded-5 border-0"><i class="fa fa-close"></i></button>
+        <img src="null">
+    </div>
+    <div class="spinner-container">
+        <div class="spinner-border text-danger loading-sp"></div>
+    </div>
+    <div class="mask"></div>
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
     <h1 class="text-center mt-5">لیست سوالات های شما</h1>
     <nav aria-label="breadcrumb" class="mx-5">
         <ol class="breadcrumb">
@@ -41,6 +140,15 @@
                 >
                     <div>
                         <p>{{$item->text}}</p>
+                        @if($item->image!=null)
+{{--                            <button--}}
+{{--                                    class="show-image-btn btn btn-primary show-button mb-3"--}}
+{{--                                    data-image="{{ Storage::url('public/'.$item->image) }}"--}}
+{{--                            >--}}
+{{--                                نمایش عکس سوال--}}
+{{--                            </button>--}}
+                            <img src="{{ Storage::url('public/'.$item->image) }}" alt="سوال" style="max-width: 300px">
+                        @endif
                         <ul>
                             <li>{{$item->chose1}}</li>
                             <li>{{$item->chose2}}</li>
@@ -124,4 +232,18 @@
             </ul>
         </div>
     @endif
+@endsection
+@section('js')
+    <script>
+        $('.show-image-btn').click(function (e) {
+            var url = $(e.target).attr('data-image')
+            $('.image-viewer img').attr('src', url)
+            $('.mask').fadeIn()
+            $('.image-viewer').css('display', 'flex')
+        })
+        $('.close-button').click(function (e) {
+            $('.mask').fadeOut()
+            $('.image-viewer').css('display', 'none')
+        })
+    </script>
 @endsection

@@ -192,6 +192,37 @@
                                     گزینه 4
                                 </label>
                             </div>
+
+                        </div>
+                        <div class="mb-3 mt-3 row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label"
+                            >فصل کتاب :</label
+                            >
+                            <div class="col-sm-3">
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="inputPassword"
+                                        name="fasl"
+                                        value="{{$question->fasl}}"
+                                />
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="level" class="col-sm-2 col-form-label"
+                            > درجه سختی :</label
+                            >
+                            <div class="col-sm-3">
+                                <select
+                                        type="text"
+                                        class="form-control"
+                                        id="level"
+                                        name="level">
+                                    <option @if($question->level=="ساده") selected @endif value="ساده">ساده</option>
+                                    <option @if($question->level=="سختی") selected @endif  value="سختی">سخت</option>
+                                    <option @if($question->level=="چالشی") selected @endif  value="چالشی">چالشی</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="col-12">
                             <div class="d-grid">

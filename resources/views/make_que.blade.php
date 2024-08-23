@@ -17,14 +17,14 @@
         </nav>
         <ul class="nav nav-tabs mt-4">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="pill" href="#menu2">تشریحی</a>
+                <a class="nav-link " data-toggle="pill" href="#menu2">تشریحی</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#menu3">تستی</a>
+                <a class="nav-link active" data-toggle="pill" href="#menu3">تستی</a>
             </li>
         </ul>
         <div class="tab-content m-4 p-2 bg-body-secondary">
-            <div id="menu2" class="tab-pane fade show active">
+            <div id="menu2" class="tab-pane fade ">
                 <!-- فرم اول -->
                 <form action="{{route('create_que',['id'=>$id])}}" method="post" enctype="multipart/form-data">
                     @csrf
@@ -57,7 +57,7 @@
                     </div>
                 </form>
             </div>
-            <div id="menu3" class="tab-pane fade">
+            <div id="menu3" class="tab-pane fade show active">
                 <form action="{{route('create_que',['id'=>$id])}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row gy-1 overflow-hidden">
@@ -181,6 +181,36 @@
                                 <label class="form-check-label" for="flexRadioDefault2">
                                     گزینه 4
                                 </label>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="mb-3 row">
+                            <label for="inputPassword" class="col-sm-2 col-form-label"
+                            >فصل کتاب :</label
+                            >
+                            <div class="col-sm-3">
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="inputPassword"
+                                        name="fasl"
+                                />
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="level" class="col-sm-2 col-form-label"
+                            > درجه سختی :</label
+                            >
+                            <div class="col-sm-3">
+                                <select
+                                        type="text"
+                                        class="form-control"
+                                        id="level"
+                                        name="level">
+                                    <option value="ساده">ساده</option>
+                                    <option value="سختی">سخت</option>
+                                    <option value="چالشی">چالشی</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-12">

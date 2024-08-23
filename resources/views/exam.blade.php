@@ -126,12 +126,13 @@
                         <p class="question-text">سوال {{ $key+1 }}:</p>
                         <p>{{$item->text}}  (<b>{{$item->fasl}}</b>) <b style="color: red">{{$item->level}}</b></p>
                         @if($item->image!=null)
-                            <button
-                                class="show-image-btn btn btn-primary show-button mb-3"
-                                data-image="{{ Storage::url('public/'.$item->image) }}"
-                            >
-                                نمایش عکس سوال
-                            </button>
+{{--                            <button--}}
+{{--                                class="show-image-btn btn btn-primary show-button mb-3"--}}
+{{--                                data-image="{{ Storage::url('public/'.$item->image) }}"--}}
+{{--                            >--}}
+{{--                                نمایش عکس سوال--}}
+{{--                            </button>--}}
+                            <img src="{{ Storage::url('public/'.$item->image) }}" alt="سوال" style="max-width: 300px">
                         @endif
                         <div class="answer-options">
                             <label>

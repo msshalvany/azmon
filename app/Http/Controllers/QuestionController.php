@@ -16,6 +16,8 @@ class QuestionController extends Controller
         $validatedData = $request->validate([
             'text' => 'nullable',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+            'level' => 'nullable',
+            'fasl' => 'nullable',
             'chose1' => 'nullable',
             'chose2' => 'nullable',
             'chose3' => 'nullable',
@@ -26,6 +28,8 @@ class QuestionController extends Controller
         $question = new question();
         $question->type = 'des';
         $question->exame_id = $id;
+        $question->level =  $validatedData['level'];
+        $question->fasl = $validatedData['fasl'];
         $question->text = $validatedData['text'];
         if ($request->has('answer')) {
             $question->type = 'test';
@@ -43,7 +47,6 @@ class QuestionController extends Controller
             Storage::disk('public')->put($imagePath, file_get_contents($image));
             $question->image = $imagePath;
         }
-
         $question->save();
 
         // پیام موفقیت
@@ -74,10 +77,13 @@ class QuestionController extends Controller
             'chose3' => 'nullable',
             'chose4' => 'nullable',
             'answer' => 'nullable',
+            'fasl' => 'nullable',
+            'level' => 'nullable',
         ]);
 
         // بررسی وجود فیلد answer در فر
-
+        $question->fasl = $validatedData['fasl'];
+        $question->level = $validatedData['level'];
         // به‌روزرسانی مقادیر سوال
         $question->type = 'des';
         $question->text = $validatedData['text'];
@@ -89,6 +95,7 @@ class QuestionController extends Controller
             $question->chose4 = $validatedData['chose4'];
             $question->answer = $validatedData['answer'];
         }
+
 
         // ذخیره عکس در صورت بروزرسانی
         if ($request->hasFile('image')) {
