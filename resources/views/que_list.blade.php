@@ -20,6 +20,7 @@
             background-color: #dde0e3;
             cursor: pointer;
         }
+
         .question-container {
             direction: rtl;
             background-color: #f8f9fa;
@@ -79,8 +80,8 @@
         }
 
         .image-viewer {
-            width: 100%;
-            height: 100vh;
+            max-width: 950%;
+            max-height: 95vh;
             display: none;
             position: fixed;
             justify-content: space-around;
@@ -136,30 +137,56 @@
             @endif
             @foreach($que as $item)
                 <div
-                    class="list-group-item list-group-item-dark mt-2 d-flex justify-content-between"
+                        class="list-group-item list-group-item-dark mt-2 d-flex justify-content-between"
                 >
                     <div>
                         <p>{{$item->text}}</p>
                         @if($item->image!=null)
-{{--                            <button--}}
-{{--                                    class="show-image-btn btn btn-primary show-button mb-3"--}}
-{{--                                    data-image="{{ Storage::url('public/'.$item->image) }}"--}}
-{{--                            >--}}
-{{--                                نمایش عکس سوال--}}
-{{--                            </button>--}}
-                            <img src="{{ Storage::url('public/'.$item->image) }}" alt="سوال" style="max-width: 300px">
+                            <button class="show-image-btn btn btn-primary show-button mb-3"
+                                    data-image="{{ Storage::url('public/'.$item->image) }}">نمایش عکس سوال
+                            </button>
+                            {{--                            <img src="{{ Storage::url('public/'.$item->image) }}" alt="سوال" style="max-width: 300px">--}}
                         @endif
-                        <ul>
-                            <li>{{$item->chose1}}</li>
-                            <li>{{$item->chose2}}</li>
-                            <li>{{$item->chose3}}</li>
-                            <li>{{$item->chose4}}</li>
+                        <ul class="d-flex flex-column">
+                            <li class="d-flex align-items-center mb-2">
+                                <b class="flex-grow-1">الف) {{$item->chose1}} </b>
+                                @if($item->chose1img!=null)
+                                    <button class="show-image-btn btn btn-primary show-button"
+                                            data-image="{{ Storage::url('public/'.$item->chose1img) }}">نمایش عکس سوال
+                                    </button>
+                                @endif
+                            </li>
+                            <li class="d-flex align-items-center mb-2">
+                                <b class="flex-grow-1">ب) {{$item->chose2}} </b>
+                                @if($item->chose2img!=null)
+                                    <button class="show-image-btn btn btn-primary show-button"
+                                            data-image="{{ Storage::url('public/'.$item->chose2img) }}">نمایش عکس سوال
+                                    </button>
+                                @endif
+                            </li>
+                            <li class="d-flex align-items-center mb-2">
+                                <b class="flex-grow-1">ج) {{$item->chose3}} </b>
+                                @if($item->chose3img!=null)
+                                    <button class="show-image-btn btn btn-primary show-button"
+                                            data-image="{{ Storage::url('public/'.$item->chose3img) }}">نمایش عکس سوال
+                                    </button>
+                                @endif
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <b class="flex-grow-1">د) {{$item->chose4}} </b>
+                                @if($item->chose4img!=null)
+                                    <button class="show-image-btn btn btn-primary show-button"
+                                            data-image="{{ Storage::url('public/'.$item->chose4img) }}">نمایش عکس سوال
+                                    </button>
+                                @endif
+                            </li>
                         </ul>
+
                         <div>
-{{--                            <span--}}
-{{--                                class="badge badge-primary badge-pill bg-primary">زمان برگزاری : {{$item->date}}  -  {{$item->time}}</span>--}}
-{{--                            <span--}}
-{{--                                class="badge badge-primary badge-pill bg-danger">مدت زمان  : {{ $item->deadline }}</span>--}}
+                            {{--                            <span--}}
+                            {{--                                class="badge badge-primary badge-pill bg-primary">زمان برگزاری : {{$item->date}}  -  {{$item->time}}</span>--}}
+                            {{--                            <span--}}
+                            {{--                                class="badge badge-primary badge-pill bg-danger">مدت زمان  : {{ $item->deadline }}</span>--}}
                             <span class="badge badge-primary badge-pill bg-success">{{ $item->type }}</span>
                             <span class="badge badge-primary badge-pill bg-danger">جواب گزینه :{{ $item->answer }}</span>
                             <span class="badge badge-primary badge-pill bg-warning">فصل : {{$item->fasl}}</span>
@@ -168,16 +195,16 @@
                     </div>
                     <div>
                         <button
-                            type="button"
-                            class="btn btn-danger"
-                            data-toggle="modal"
-                            data-target="#myModal"
+                                type="button"
+                                class="btn btn-danger"
+                                data-toggle="modal"
+                                data-target="#myModal"
                         >
                             <i class="fa fa-trash"></i>
                         </button>
                         <a
-                            class="btn btn-primary"
-                            href="{{route('que_edit_v',['id'=>$item->id])}}"
+                                class="btn btn-primary"
+                                href="{{route('que_edit_v',['id'=>$item->id])}}"
                         >
                             <i class="fa fa-edit"></i>
                         </a>
@@ -194,7 +221,8 @@
                                     <button class="btn btn-danger" data-dismiss="modal">
                                         کنسل
                                     </button>
-                                    <form style="display: inline" action="{{route('del_que',['id'=>$item->id])}}" method="post">
+                                    <form style="display: inline" action="{{route('del_que',['id'=>$item->id])}}"
+                                          method="post">
                                         @method('DELETE')
                                         @csrf
                                         <button class="btn btn-success">
@@ -214,8 +242,9 @@
                     @csrf
                     <div class="container mt-3 py-3 ">
                         <div class="input-group custom-file-button text-center">
-                            <label class="input-group-text btn btn-success d-block m-auto" for="inputGroupFile">اپلود فایل اکسل</label>
-                            <input type="file" class="form-control d-none" name="file"  id="inputGroupFile">
+                            <label class="input-group-text btn btn-success d-block m-auto" for="inputGroupFile">اپلود
+                                فایل اکسل</label>
+                            <input type="file" class="form-control d-none" name="file" id="inputGroupFile">
                             <input type="hidden" name="exame_id" value="{{$exame_id}}">
                         </div>
                     </div>

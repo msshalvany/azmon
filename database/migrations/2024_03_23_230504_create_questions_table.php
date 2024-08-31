@@ -26,6 +26,11 @@ return new class extends Migration
             $table->text('answer')->nullable();
             $table->string('level')->nullable();
             $table->string('fasl')->nullable();
+            $table->string('chose1img')->nullable();
+            $table->string('chose2img')->nullable();
+            $table->string('chose3img')->nullable();
+            $table->string('chose4img')->nullable();
+            $table->string('term')->nullable();
             $table->timestamps();
         });
     }

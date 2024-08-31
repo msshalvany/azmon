@@ -26,5 +26,12 @@ class exame extends Model
         'rand_choice' => 'boolean',
         'rand_que' => 'boolean',
     ];
-
+    public function questions()
+    {
+        return $this->hasMany(question::class,'exame_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 }

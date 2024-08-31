@@ -63,8 +63,8 @@
         }
 
         .image-viewer {
-            width: 100%;
-            height: 100vh;
+            max-width: 950%;
+            max-height: 95vh;
             display: none;
             position: fixed;
             justify-content: space-around;
@@ -124,7 +124,7 @@
                 @if($item->type=='test')
                     <div class="question @if(property_exists($item,'std_answer')) bg-secondary-subtle  @endif p-2"  >
                         <p class="question-text">سوال {{ $key+1 }}:</p>
-                        <p>{{$item->text}}  (<b>{{$item->fasl}}</b>) <b style="color: red">{{$item->level}}</b></p>
+                        <p>{{$item->text}}  (<b>{{$item->fasl}}</b>) <b style="color: red">{{$item->level}}</b><b>  ترم  {{$item->term }}  </b></p>
                         @if($item->image!=null)
 {{--                            <button--}}
 {{--                                class="show-image-btn btn btn-primary show-button mb-3"--}}
@@ -135,7 +135,7 @@
                             <img src="{{ Storage::url('public/'.$item->image) }}" alt="سوال" style="max-width: 300px">
                         @endif
                         <div class="answer-options">
-                            <label>
+                            <label class="mt-2">
                                 <input
                                     @if(property_exists($item,'std_answer'))
                                         @if($item->std_answer==1)
@@ -145,8 +145,11 @@
                                     class="answer-user" type="radio" que-id="{{$item->id}}"
                                     number-chose="1" name="{{ $key+1 }}"/>
                                 {{$item->chose1}}
+                                @if($item->chose1img!=null)
+                                    <button class="show-image-btn btn btn-primary show-button" data-image="{{ Storage::url('public/'.$item->chose1img) }}">نمایش عکس جواب</button>
+                                @endif
                             </label>
-                            <label>
+                            <label class="mt-2">
                                 <input
                                     @if(property_exists($item,'std_answer'))
                                         @if($item->std_answer==2)
@@ -156,8 +159,11 @@
                                     class="answer-user" type="radio" que-id="{{$item->id}}"
                                     number-chose="2" name="{{ $key+1 }}"/>
                                 {{$item->chose2}}
+                                @if($item->chose2img!=null)
+                                    <button class="show-image-btn btn btn-primary show-button" data-image="{{ Storage::url('public/'.$item->chose2img) }}">نمایش عکس جواب</button>
+                                @endif
                             </label>
-                            <label>
+                            <label class="mt-2">
                                 <input
                                     @if(property_exists($item,'std_answer'))
                                         @if($item->std_answer==3)
@@ -167,8 +173,11 @@
                                     class="answer-user" type="radio" que-id="{{$item->id}}"
                                     number-chose="3" name="{{ $key+1 }}"/>
                                 {{$item->chose3}}
+                                @if($item->chose3img!=null)
+                                    <button class="show-image-btn btn btn-primary show-button" data-image="{{ Storage::url('public/'.$item->chose3img) }}">نمایش عکس جواب</button>
+                                @endif
                             </label>
-                            <label>
+                            <label class="mt-2">
                                 <input
                                     @if(property_exists($item,'std_answer'))
                                         @if($item->std_answer==4)
@@ -178,6 +187,9 @@
                                     class="answer-user" type="radio" que-id="{{$item->id}}"
                                     number-chose="4" name="{{ $key+1 }}"/>
                                 {{$item->chose4}}
+                                @if($item->chose4img!=null)
+                                    <button class="show-image-btn btn btn-primary show-button" data-image="{{ Storage::url('public/'.$item->chose4img) }}">نمایش عکس جواب</button>
+                                @endif
                             </label>
                         </div>
                     </div>

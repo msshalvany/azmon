@@ -3,7 +3,24 @@
     لیست  سوالات
 @endsection
 @section('css')
+<style>
+    .custom-file-button input[type=file] {
+        margin-left: -2px !important;
+    }
 
+    .custom-file-button input[type=file]::-webkit-file-upload-button {
+        display: none;
+    }
+
+    .custom-file-button input[type=file]::file-selector-button {
+        display: none;
+    }
+
+    .custom-file-button:hover label {
+        background-color: #dde0e3;
+        cursor: pointer;
+    }
+</style>
 @endsection
 @section('content')
     <div class="container ">
@@ -79,7 +96,7 @@
                             >
                             <input class="form-control" type="file" name="image" id="formFile"/>
                         </div>
-                        <div class="mb-3 row">
+                        <div class="mb-3 row bg-dark-subtle p-4">
                             <label for="inputPassword" class="col-sm-2 col-form-label"
                             >گزینه 1</label
                             >
@@ -90,9 +107,13 @@
                                     id="inputPassword"
                                     name="chose1"
                                 />
+                                <div class="input-group custom-file-button col-2" >
+                                    <label class="input-group-text  btn btn-success mt-3" for="inputGroupFile">اگر جواب عکس است اپلود کنید</label>
+                                    <input type="file" class="form-control mt-3" name="chose1img" id="inputGroupFile">
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3 row">
+                        <div class="mb-3 row bg-dark-subtle p-4">
                             <label for="inputPassword" class="col-sm-2 col-form-label"
                             >گزینه 2</label
                             >
@@ -103,9 +124,13 @@
                                     id="inputPassword"
                                     name="chose2"
                                 />
+                                <div class="input-group custom-file-button col-2" >
+                                    <label class="input-group-text  btn btn-success mt-3" for="inputGroupFile2">اگر جواب عکس است اپلود کنید</label>
+                                    <input type="file" class="form-control mt-3" name="chose2img" id="inputGroupFile2">
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3 row">
+                        <div class="mb-3 row bg-dark-subtle p-4">
                             <label for="inputPassword" class="col-sm-2 col-form-label"
                             >گزینه 3</label
                             >
@@ -116,9 +141,13 @@
                                     id="inputPassword"
                                     name="chose3"
                                 />
+                                <div class="input-group custom-file-button col-2" >
+                                    <label class="input-group-text  btn btn-success mt-3" for="inputGroupFile3">اگر جواب عکس است اپلود کنید</label>
+                                    <input type="file" class="form-control mt-3" name="chose3img" id="inputGroupFile3">
+                                </div>
                             </div>
                         </div>
-                        <div class="mb-3 row">
+                        <div class=" row  bg-dark-subtle p-4">
                             <label for="inputPassword" class="col-sm-2 col-form-label"
                             >گزینه 4</label
                             >
@@ -129,6 +158,10 @@
                                     id="inputPassword"
                                     name="chose4"
                                 />
+                                <div class="input-group custom-file-button col-2" >
+                                    <label class="input-group-text  btn btn-success mt-3" for="inputGroupFile4">اگر جواب عکس است اپلود کنید</label>
+                                    <input type="file" class="form-control mt-3" name="chose4img" id="inputGroupFile4">
+                                </div>
                             </div>
                         </div>
                         <h4>جواب :</h4>
@@ -194,6 +227,19 @@
                                         class="form-control"
                                         id="inputPassword"
                                         name="fasl"
+                                />
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="term" class="col-sm-2 col-form-label"
+                            > ترم تحصیلی :</label
+                            >
+                            <div class="col-sm-3">
+                                <input
+                                        type="text"
+                                        class="form-control"
+                                        id="term"
+                                        name="term"
                                 />
                             </div>
                         </div>

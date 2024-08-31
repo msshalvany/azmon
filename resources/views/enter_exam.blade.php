@@ -35,10 +35,12 @@
             </div>
             <br>
             @if($date->isFuture())
-                تا آزمون : <div id="countdown"></div>
+                تا آزمون :
+                <div id="countdown"></div>
             @endif
             @if(!$date->isFuture() && !$endDate->isPast())
-                 زمان باقی مانده تا پایان : <div > {{$timeForEnter}}دقیقه</div>
+                زمان باقی مانده تا پایان :
+                <div> {{$timeForEnter}}دقیقه</div>
             @endif
             @if($endDate->isPast())
                 <button
@@ -49,12 +51,15 @@
                 >
                     آزمون به پایان رسیده
                 </button>
+                @if(\App\Models\std_exame::where('std_code',session()->get('std_code'))->where('exame_id',$exam->id)->first()!=null)
+                    <a class="btn btn-success btn-block mt-3 w-100" href="{{route('showResult',['exam'=>$exam->id,'std_code'=>session()->get('std_code')])}}">مشاهده نتیجه</a>
+                @endif
             @elseif($date->isFuture())
                 <button
-                    data-mdb-ripple-init
-                    type="submit"
-                    class="btn btn-warning btn-block mt-3 w-100"
-                    disabled
+                        data-mdb-ripple-init
+                        type="submit"
+                        class="btn btn-warning btn-block mt-3 w-100"
+                        disabled
                 >
                     آزمون شروع نشده
                 </button>
@@ -117,7 +122,7 @@
                 } else {
                     clearInterval(countdownInterval);
                     countdownElement.innerHTML = "زمان به پایان رسید.";
-                    $('.spinner-container').css({'display':'flex'})
+                    $('.spinner-container').css({'display': 'flex'})
                     location.href = location.href
                 }
             }
@@ -129,4 +134,12 @@
         // شروع شمارش معکوس بلافاصله پس از بارگذاری صفحه
         window.onload = countdown;
     </script>
+
+@endsection
+@section('js')
+    @if(session()->has('timeError'))
+        <script>
+            alertEore('آزمون به پایان رسیده')
+        </script>
+    @endif
 @endsection

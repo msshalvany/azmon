@@ -136,6 +136,11 @@ class ExameController extends Controller
     public function exam($id)
     {
         $exam = exame::find($id);
+        $date = \Hekmatinasser\Verta\Verta::parse($exam->date.' '. $exam->time);
+        $endDate = \Hekmatinasser\Verta\Verta::parse($exam->date.' '. $exam->time)->addMinutes($exam->deadline);
+        if ($endDate->isPast()){
+            return redirect()->back()->with('timeError',1);
+        }
         $std_code = session('std_code');
         if (count(std_exame::where('std_code', $std_code)->where('exame_id', $id)->get()) == 0) {
             $que_all = question::where('exame_id', $exam->id)->get();
@@ -213,5 +218,11 @@ class ExameController extends Controller
             }
         }
         return \view('std_list', ['std' => $stds, 'exame' => $exame]);
+    }
+    public function showResult($exam,$std_code)
+    {
+        $exam = exame::find($exam);
+        $selectedQuestions = std_exame::where('std_code', $std_code)->where('exame_id', $exam->id)->first();
+        return \view('showResult', ['exam' => $exam, 'ques' =>  json_decode($selectedQuestions->ques),'std'=>$selectedQuestions]);
     }
 }

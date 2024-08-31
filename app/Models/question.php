@@ -18,8 +18,17 @@ class question extends Model
         'chose2',
         'chose3',
         'chose4',
+        'chose1img',
+        'chose2img',
+        'chose3img',
+        'chose4img',
         'answer',
         'fasl',
-        'level'
+        'level',
+        'term'
     ];
+    public function exame()
+    {
+         return $this->belongsTo(exame::class,'exame_id');
+    }
 }

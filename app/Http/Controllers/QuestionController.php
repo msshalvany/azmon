@@ -22,6 +22,10 @@ class QuestionController extends Controller
             'chose2' => 'nullable',
             'chose3' => 'nullable',
             'chose4' => 'nullable',
+            'chose1imgِ' => 'nullable',
+            'chose2img' => 'nullable',
+            'chose3img' => 'nullable',
+            'chose4img' => 'nullable',
             'answer' => 'nullable',
         ]);
         // ایجاد سوال جدید
@@ -47,8 +51,35 @@ class QuestionController extends Controller
             Storage::disk('public')->put($imagePath, file_get_contents($image));
             $question->image = $imagePath;
         }
+        if ($request->hasFile('chose1img')) {
+            $image = $request->file('chose1img');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $imagePath = $id . '/' . $imageName;
+            Storage::disk('public')->put($imagePath, file_get_contents($image));
+            $question->chose1img = $imagePath;
+        }
+        if ($request->hasFile('chose2img')) {
+            $image = $request->file('chose2img');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $imagePath = $id . '/' . $imageName;
+            Storage::disk('public')->put($imagePath, file_get_contents($image));
+            $question->chose2img = $imagePath;
+        }
+        if ($request->hasFile('chose3img')) {
+            $image = $request->file('chose3img');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $imagePath = $id . '/' . $imageName;
+            Storage::disk('public')->put($imagePath, file_get_contents($image));
+            $question->chose3img = $imagePath;
+        }
+        if ($request->hasFile('chose4img')) {
+            $image = $request->file('chose4img');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $imagePath = $id . '/' . $imageName;
+            Storage::disk('public')->put($imagePath, file_get_contents($image));
+            $question->chose4img = $imagePath;
+        }
         $question->save();
-
         // پیام موفقیت
         return redirect()->route('que_list',['id'=>$id]);
     }
@@ -76,6 +107,10 @@ class QuestionController extends Controller
             'chose2' => 'nullable',
             'chose3' => 'nullable',
             'chose4' => 'nullable',
+            'chose1imgِ' => 'nullable',
+            'chose2img' => 'nullable',
+            'chose3img' => 'nullable',
+            'chose4img' => 'nullable',
             'answer' => 'nullable',
             'fasl' => 'nullable',
             'level' => 'nullable',

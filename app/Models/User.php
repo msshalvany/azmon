@@ -14,4 +14,8 @@ class User extends Model
         'email',
         'password',
     ];
+    public function exame()
+    {
+        return $this->hasMany(exame::class,'user_id');
+    }
 }

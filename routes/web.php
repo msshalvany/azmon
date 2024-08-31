@@ -39,6 +39,7 @@ Route::get('/enter_exam/{id}', [\App\Http\Controllers\ExameController::class, 'e
 Route::get('/login_exam', [\App\Http\Controllers\ExameController::class, 'login_exam'])->name('login_exam');
 Route::get('/exam/{id}', [\App\Http\Controllers\ExameController::class, 'exam'])->name('exam');
 Route::post('/exam/send_answer', [\App\Http\Controllers\ExameController::class, 'send_answer'])->name('send_answer');
+Route::get('/exam/showResult/{exam}/{std_code}', [\App\Http\Controllers\ExameController::class, 'showResult'])->name('showResult');
 
 
 Route::middleware(\App\Http\Middleware\User::class)->prefix('/user')->group(function () {

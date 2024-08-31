@@ -26,6 +26,7 @@ class QuestionsImport implements ToModel
             'answer' => $row[5],
             'level' => $row[6],
             'fasl' => $row[7],
+            'term' => $row[8],
         ]);
     }
 }
